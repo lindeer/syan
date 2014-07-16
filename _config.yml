@@ -101,4 +101,7 @@ stylus:
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: github
+  repository: git@github.com:lindeer/lindeer.github.io.git
+  branch: master
+  message: setting domain name
