@@ -1,3 +1,6 @@
 [submodule "themes/kael"]
 	path = themes/kael
 	url = https://github.com/yuche/hexo-theme-kael.git
+[submodule ".deploy"]
+	path = .deploy
+	url = git@github.com:lindeer/lindeer.github.io.git
