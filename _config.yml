@@ -14,7 +14,7 @@ language:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://www.lindeer.net
 root: /
-permalink: :year-:month-:day/:title/
+permalink: :year/:month/:day/:title/
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -100,7 +100,7 @@ stylus:
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type: github
+  type: git
   repository: git@github.com:lindeer/lindeer.github.io.git
   branch: master
   message: setting domain name
