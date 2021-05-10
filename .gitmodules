@@ -1,6 +1,3 @@
-[submodule ".deploy"]
-	path = .deploy
-	url = git@github.com:lindeer/lindeer.github.io.git
 [submodule "themes/ascent"]
 	path = themes/ascent
 	url = https://lindeer@gitee.com/lindeer/ascent.git
