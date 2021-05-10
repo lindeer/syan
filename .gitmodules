@@ -4,3 +4,6 @@
 [submodule ".deploy"]
 	path = .deploy
 	url = git@github.com:lindeer/lindeer.github.io.git
+[submodule "themes/ascent"]
+	path = themes/ascent
+	url = https://github.com/cjquines/hexo-theme-ascent.git
