@@ -100,6 +100,7 @@ Future<int> _writePost(Map<String, dynamic> body) async {
     sink.writeln('layout: weibo');
     sink.writeln('date: ${_formatTime(time)}');
     sink.writeln('---');
+    sink.writeln('<meta name="referrer" content="no-referrer" />\n');
     sink.writeln("${_formatTime(time)}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 来自 $source");
 
     sink.writeln(text);
