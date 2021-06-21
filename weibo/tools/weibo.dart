@@ -39,7 +39,7 @@ void _createSource() async {
     exit(-1);
   }
 
-  final sourceDir = Directory('source/_weibo');
+  final sourceDir = Directory('source/_posts');
   if (!sourceDir.existsSync()) {
     sourceDir.create(recursive: true);
   }
@@ -92,7 +92,7 @@ void _writePost(Map<String, dynamic> body) async {
     final source = entity['source'];
     final time = HttpDate.parse(at);
 
-    final f = File("source/_weibo/${_formatTime(time, ymd: '-', hms: '')}.md");
+    final f = File("source/_posts/${_formatTime(time, ymd: '-', hms: '')}.md");
     final sink = f.openWrite();
     sink.writeln('layout: weibo');
     sink.writeln('date: ${_formatTime(time)}');
