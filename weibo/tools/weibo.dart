@@ -79,6 +79,11 @@ String _formatTime(DateTime time, {String ymd = ' ', String hms = ':'}) {
       "${time.hour.padZero}$hms${time.minute.padZero}$hms${time.second.padZero}";
 }
 
+bool _isUrl(String? url) {
+  if (url == null || url.isEmpty) return false;
+  return url.startsWith('https://') || url.startsWith('http://');
+}
+
 void _writePost(Map<String, dynamic> body) async {
   final cards = body['cards'] as List;
   final info = body['cardlistInfo'];
@@ -97,18 +102,21 @@ void _writePost(Map<String, dynamic> body) async {
     sink.writeln('layout: weibo');
     sink.writeln('date: ${_formatTime(time)}');
     sink.writeln('---');
-    sink.writeln(source);
+    sink.writeln("${_formatTime(time)}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 来自 $source");
+
     sink.writeln(text);
 
     final retweet = entity['retweeted_status'];
     final page = entity['page_info'];
+    final title = page?['page_title'];
     final pic = entity['pic_infos'] as Map<String, dynamic>? ?? const <String, dynamic>{};
     if (retweet != null) {
-      final text = retweet['text'];
+      final text = retweet['text'] as String?;
       if (text != null) {
         final owner = retweet['user'];
         final ownerName = owner?['screen_name'] as String?;
-        sink.writeln(">  ${ownerName == null ? '' : '@$ownerName: '}$text");
+        final content = _isUrl(text) && title != null ? '[$title]($text)': text;
+        sink.writeln(">  ${ownerName == null ? '' : '@$ownerName: '}$content");
       }
       final picInfo = retweet['pic_infos'] as Map<String, dynamic>? ?? const <String, dynamic>{};
       if (picInfo.isNotEmpty) {
@@ -117,10 +125,26 @@ void _writePost(Map<String, dynamic> body) async {
           sink.writeln(">  ![图片]($url)");
         });
       }
-    } else if (page != null) {
-      sink.writeln(">  ${page?['user']?['screen_name']}回答了:");
-      sink.writeln(">  ${page?['content1']}");
-      sink.writeln(">  ${page?['content2_html']}");
+    }
+    if (page != null) {
+      final pageType = page['type'];
+      final type = pageType is num ? pageType : int.tryParse(pageType.toString()) ?? 0;
+      final pic = page['page_pic'];
+      if (type == 0) {
+        final url = Uri.parse(page['page_url']);
+        final link = url.isScheme('http') || url.isScheme('https') ? url : url.queryParameters['url'];
+        final content = '<img style="float: left;" src="$pic"/>'
+            '${page['page_title']}\n${page['page_desc']}';
+        sink.writeln('[$content]($link)');
+        sink.writeln();
+
+      } else if (type == 24) {
+        sink.writeln('> <img src="${page['page_pic']}" />');
+        sink.writeln(">  ${page['user']?['screen_name']}回答了:");
+        sink.writeln();
+        sink.writeln(">  ${page['content1']}");
+        sink.writeln(">  ${page['content2_html']}");
+      }
     } else if (pic.isNotEmpty) {
       pic.forEach((key, value) {
         final url = (((value as Map<String, dynamic>)['largest']) as Map<String, dynamic>)['url'];
