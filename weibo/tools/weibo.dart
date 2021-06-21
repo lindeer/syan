@@ -25,7 +25,7 @@ void main(List<String> argv) async {
   // final showTime = time.add(curZone - timezone);
   // print("$timezone - ${DateFormat('yyyy-MM-dd hh:mm:ss').format(showTime)}, show=$showTime");
 
-  // fetchWeibo();
+  // fetchWeibo(page: 124, increase: false);
   if (argv.length > 0) {
     Directory.current = argv[0];
   }
@@ -45,6 +45,7 @@ void _createSource() async {
   }
 
   final files = dir.list(recursive: false, followLinks: false,);
+  int total = 0;
   await for (final f in files) {
     try {
       final file = File(f.path);
@@ -53,21 +54,15 @@ void _createSource() async {
         continue;
       }
       final str = await file.readAsString();
-      _writePost(json.decode(str));
+      final size = await _writePost(json.decode(str));
+      total += size;
+      final warning = size != 20 ? 'have only $size tweets!' : '';
+      print("'${f.path}' $warning total: $total");
     } catch (e) {
       print("Error: $e !!");
       break;
     }
   }
-  // final ss = Stream<int>.periodic(Duration(seconds: 3), (x) => x + 1).take(1);
-  // await for (final i in ss) {
-  //   try {
-  //     _fromFile('weibo_page_$i.json');
-  //   } catch (e) {
-  //     print("Error========> $e");
-  //     break;
-  //   }
-  // }
 }
 
 extension _IntExt on int {
@@ -84,11 +79,11 @@ bool _isUrl(String? url) {
   return url.startsWith('https://') || url.startsWith('http://');
 }
 
-void _writePost(Map<String, dynamic> body) async {
+Future<int> _writePost(Map<String, dynamic> body) async {
   final cards = body['cards'] as List;
   final info = body['cardlistInfo'];
   final total = info['total'] ?? 0;
-  int i = 0;
+  final size = cards.length;
   for (final card in cards) {
     final type = card['card_type'];
     final entity = card['mblog'];
@@ -153,25 +148,31 @@ void _writePost(Map<String, dynamic> body) async {
     }
 
     await sink.close();
-    print("${i++ + 1}/$total: -------------------------- $type");
   }
+  return size;
 }
 
 int fetchNum = 0;
-void fetchWeibo({int page = 1}) async {
+void fetchWeibo({int page = 1, bool increase = true}) async {
   final url = Uri.parse('http://api.weibo.cn/2/cardlist?networktype=wifi&uicode=10000197&moduleID=708&featurecode=10000085&wb_version=3342&c=android&i=b7cd3c5&s=af220cf7&ua=Google-Pixel__weibo__7.3.0__android__android10&wm=44904_0001&aid=&fid=1076031831493635_-_WEIBO_SECOND_PROFILE_WEIBO&uid=1831493635&v_f=2&v_p=45&from=1073095010&gsid=_2A25NxPnrDeRxGedG6FMV-S3KyDmIHXVs0AojrDV6PUJbkdAKLXjkkWpNUVL2flBB4SmV3nFF8CpOMiBjvhO52v1u&lang=zh_CN&lfid=2735327001&page=$page&skin=default&count=20&oldwm=44904_0001&sflag=1&containerid=1076031831493635_-_WEIBO_SECOND_PROFILE_WEIBO&luicode=10000073&need_head_cards=0');
   final response = await http.post(url);
 
   print("<<<<<< status: ${response.statusCode}, headers=${response.headers}");
-  if (response.statusCode == 200) {
+  int num = 0;
+  final success = response.statusCode == 200;
+  if (success) {
     final filename = 'weibo_page_$page.json';
     final file = File(filename);
-    await file.writeAsString(response.body);
-    fetchNum += 20;
+    final body = response.body;
+    await file.writeAsString(body);
+    final obj = json.decode(body);
+    final cards = obj['cards'] as List;
+    num = cards.length;
     page++;
   }
-  print(">>>>>> num=$fetchNum");
-  if (fetchNum < 2854) {
+  fetchNum += num;
+  print(">>>>>> num=$num, total=$fetchNum");
+  if (!success || increase && fetchNum < 2854) {
     Future.delayed(Duration(seconds: 2), () {
       fetchWeibo(page: page);
     });
