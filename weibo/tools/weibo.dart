@@ -69,6 +69,10 @@ extension _IntExt on int {
   String get padZero => toString().padLeft(2, '0');
 }
 
+extension _TExt<T> on T {
+  R let<R>(R op(T it)) => op(this);
+}
+
 String _formatTime(DateTime time, {String ymd = ' ', String hms = ':'}) {
   return "${time.year}-${time.month.padZero}-${time.day.padZero}$ymd"
       "${time.hour.padZero}$hms${time.minute.padZero}$hms${time.second.padZero}";
@@ -85,7 +89,6 @@ Future<int> _writePost(Map<String, dynamic> body) async {
   final total = info['total'] ?? 0;
   final size = cards.length;
   for (final card in cards) {
-    final type = card['card_type'];
     final entity = card['mblog'];
     final text = entity['text'];
     final at = (entity['created_at'] as String?)?.replaceFirst('+0800', '') ?? '';
@@ -136,9 +139,8 @@ Future<int> _writePost(Map<String, dynamic> body) async {
       } else if (type == 24) {
         sink.writeln('> <img src="${page['page_pic']}" />');
         sink.writeln(">  ${page['user']?['screen_name']}回答了:");
-        sink.writeln();
         sink.writeln(">  ${page['content1']}");
-        sink.writeln(">  ${page['content2_html']}");
+        (page['content2_html'] as String?)?.let((it) => sink.writeln(">  $it"));
       }
     } else if (pic.isNotEmpty) {
       pic.forEach((key, value) {
