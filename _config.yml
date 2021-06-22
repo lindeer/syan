@@ -103,4 +103,4 @@ deploy:
   type: git
   repository: git@github.com:lindeer/lindeer.github.io.git
   branch: master
-  message: fix remote image not show
+  message: add geo location tag

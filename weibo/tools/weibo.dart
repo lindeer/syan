@@ -47,21 +47,26 @@ void _createSource() async {
   final files = dir.list(recursive: false, followLinks: false,);
   int total = 0;
   await for (final f in files) {
-    try {
-      final file = File(f.path);
-      if (!file.existsSync()) {
-        print("'${file.path}' not exists!");
-        continue;
-      }
-      final str = await file.readAsString();
-      final size = await _writePost(json.decode(str));
-      total += size;
-      final warning = size != 20 ? 'have only $size tweets!' : '';
-      print("'${f.path}' $warning total: $total");
-    } catch (e) {
-      print("Error: $e !!");
-      break;
+    final size = await _writeToFile(f.path);
+    total += size;
+    final warning = size != 20 ? 'have only $size tweets!' : '';
+    print("'${f.path}' $warning total: $total");
+  }
+}
+
+Future<int> _writeToFile(String path) async {
+  try {
+    final file = File(path);
+    if (!file.existsSync()) {
+      print("'${file.path}' not exists!");
+      return 0;
     }
+    final str = await file.readAsString();
+    final size = await _writePost(json.decode(str));
+    return size;
+  } catch (e) {
+    print("Error: $e !!");
+    return 0;
   }
 }
 
@@ -149,6 +154,12 @@ Future<int> _writePost(Map<String, dynamic> body) async {
         sink.writeln("![图片]($url)");
       });
     }
+
+    final tags = entity['tag_struct'] as List? ?? const [];
+    tags.forEach((tag) {
+      sink.writeln('<img src="${tag['url_type_pic']}" width="32" height="32" style="float: left;"/>  '
+          '${tag['tag_name']}');
+    });
 
     await sink.close();
   }
