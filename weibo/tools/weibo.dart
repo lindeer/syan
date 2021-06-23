@@ -31,7 +31,8 @@ void main(List<String> argv) async {
     Directory.current = argv[0];
   }
   // _createSource();
-  _fetchAllComments();
+  // _fetchAllComments();
+  _writeAllComments();
 }
 
 void _createSource() async {
@@ -46,7 +47,7 @@ void _createSource() async {
     sourceDir.create(recursive: true);
   }
 
-  final files = dir.list(recursive: false, followLinks: false,);
+  final files = dir.list(recursive: false, followLinks: false,).where((f) => f.path.contains('weibo_page_'));
   int total = 0;
   await for (final f in files) {
     final size = await _writeToFile(f.path);
@@ -293,37 +294,57 @@ Future<Map<String, dynamic>?> _fetchComments(int count, Map<String, String> item
   }
 }
 
-Future<int> _writeComment(int page) async {
-  int size = 0;
-  final sink = File('').openWrite();
-    final body = json.decode(await File('weibo_comment_$page.json').readAsString());
-    final roots = body['root_comments'] as List? ?? const [];
-    size = roots.length;
-    roots.forEach((root) {
-      final user = root['user'] as Map<String, dynamic>;
-      final name = user['screen_name'];
-      final time = HttpDate.parse((root['created_at'] as String?)?.replaceFirst('+0800', '') ?? '');
-      final text = root['text'];
+void _writeAllComments() async {
+  final dir = Directory('data/weibo');
+  final files = dir.list(recursive: false, followLinks: false,).where((f) => f.path.contains('weibo_comment_'));
 
-      final more = root['more_info'] as Map<String, dynamic>?;
 
-      final comments = root['comments'] as List? ?? const [];
-      comments.forEach((comment) {
-        final c = comment as Map<String, dynamic>;
-        _writeOneComment(sink, c);
+  await for (final f in files) {
+    final blogs = json.decode(await File(f.path).readAsString()) as List? ?? const [];
+    print("all comments: ${blogs.length}");
+    blogs.forEach((container) {
+      final blog = container['status'] as Map<String, dynamic>;
+      final time = HttpDate.parse((blog['created_at'] as String?)?.replaceFirst('+0800', '') ?? '');
+      final file = File("source/_posts/${_formatTime(time, ymd: '-', hms: '')}.md");
+      if (!file.existsSync()) {
+        print("!!!!!!!!! blog(${container['idStr']})\"${blog['text']}\"'s source '${file.path}' not exists!");
+        return;
+      }
+      final sink = file.openWrite(mode: FileMode.append);
+      final comments = container['root_comments'] as List? ?? const [];
+      print("${file.path} have ${comments.length} comments!");
+      comments.forEach((rootComment) {
+        final replier = rootComment['user'] as Map<String, dynamic>;
+        final avatar = replier['profile_image_url'];
+        final name = replier['screen_name'];
+        final time = _formatTime2(HttpDate.parse((rootComment['created_at'] as String?)?.replaceFirst('+0800', '') ?? ''));
+        final text = rootComment['text'];
+        sink.writeln("""
+
+<table style="width: 100%;">
+  <tr>
+    <td style="width: 40px;"><img style="border-radius:50%" src="$avatar"></td>
+    <td colspan="2"><small>$name $time</small><br/>$text</td>
+  </tr>""");
+
+        final secondary = rootComment['comments'] as List? ?? const [];
+        secondary.forEach((comment) {
+          final user = comment['user'];
+          final username = user['screen_name'];
+          final image = user['profile_image_url'];
+          final colon = comment['shouldShowColon'] as int? ?? 0;
+          final t = _formatTime2(HttpDate.parse((comment['created_at'] as String?)?.replaceFirst('+0800', '') ?? ''));
+          sink.writeln("""
+  <tr>
+    <td/>
+    <td style="width: 40px;"><img style="border-radius:50%" src="$image"></td>
+    <td><small>$username $t</small><br/>${colon == 0 ? '' : ': '}${comment['text']}</td>
+  </tr>""");
+        });
+        sink.writeln("""
+</table>""");
       });
-
+      sink.close();
     });
-  return size;
-}
-
-void _writeOneComment(IOSink sink, Map<String, dynamic> comment) {
-  final user = comment['user'];
-  final colon = comment['shouldShowColon'] as int? ?? 0;
-  final name = user['screen_name'];
-  final time = HttpDate.parse((comment['created_at'] as String?)?.replaceFirst('+0800', '') ?? '');
-
-  sink.writeln(name);
-  sink.writeln(_formatTime2(time));
-  sink.writeln('${colon == 0 ? '' : ': '}${comment['text']}');
+  }
 }
