@@ -29,7 +29,8 @@ void main(List<String> argv) async {
   if (argv.length > 0) {
     Directory.current = argv[0];
   }
-  _createSource();
+  // _createSource();
+  _fetchAllComments();
 }
 
 void _createSource() async {
@@ -82,6 +83,9 @@ String _formatTime(DateTime time, {String ymd = ' ', String hms = ':'}) {
   return "${time.year}-${time.month.padZero}-${time.day.padZero}$ymd"
       "${time.hour.padZero}$hms${time.minute.padZero}$hms${time.second.padZero}";
 }
+
+String _formatTime2(DateTime time) => "${time.year % 100}-${time.month}-${time.day} "
+    "${time.hour.padZero}:${time.minute.padZero}";
 
 bool _isUrl(String? url) {
   if (url == null || url.isEmpty) return false;
@@ -191,4 +195,108 @@ void fetchWeibo({int page = 1, bool increase = true}) async {
       fetchWeibo(page: page);
     });
   }
+}
+
+Future<void> _fetchAllComments() async {
+  final dir = Directory('data/weibo');
+  final files = dir.list(recursive: false, followLinks: false,).where((f) => f.path.contains('weibo_page_'));
+  await for (final f in files) {
+    print("++++++ start downloading all comments in '${f.path}'...");
+    int num = await _fetchPageComments(f.path);
+    print("------ finish downloading comments${num > 0 ? ' and saved' : ''}");
+  }
+
+}
+
+Future<int> _fetchPageComments(String path) async {
+  final input = File(path);
+  final body = json.decode(await input.readAsString());
+  final cards = body['cards'] as List;
+  final comments = <Map<String, dynamic>>[];
+  for (final card in cards) {
+    final entity = card['mblog'];
+    final count = entity['comments_count'] as int? ?? 0;
+    if (count > 0) {
+      final itemId = card['itemid'];
+      final id = entity['idstr'] as String;
+      final comment = (await _fetchComments({"itemId":itemId, "blogId":id, "text":entity['text']}));
+      if (comment != null) {
+        comments.add(comment);
+      }
+    }
+  }
+  if (comments.length > 0) {
+    final output = File(path.replaceAll('weibo_page_', 'weibo_comment_'));
+    await output.writeAsString(json.encode(comments));
+  }
+  return comments.length;
+}
+
+Future<Map<String, dynamic>?> _fetchComments(Map<String, String> item) async {
+  final itemId = item['itemId'];
+  final blogId = item['blogId'];
+  print("<<<<<< itemId=$itemId, blog=$blogId");
+  final url = Uri.parse('http://api.weibo.cn/2/comments/build_comments?networktype=wifi&max_id=0&is_show_bulletin=2&uicode=10000002&moduleID=700&trim_user=0&is_reload=1&wb_version=3342&is_encoded=0&lcardid=$itemId&c=android&i=c7f35ce&s=af220cf7&id=$blogId&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&lfid=2302831831493635&skin=default&count=20&oldwm=44904_0001&sflag=1&luicode=10000197&fetch_level=0&max_id_type=0');
+  final response = await http.post(url);
+  final success = response.statusCode == 200;
+  if (success) {
+    final body = json.decode(response.body) as Map<String, dynamic>;
+    final roots = body['root_comments'] as List? ?? const [];
+    final total = await Future.wait<int>(roots.map((root) async {
+      final more = root['more_info'] as Map<String, dynamic>?;
+      final old = root['comments'] as List;
+      int size = old.length;
+      if (more != null && more.isNotEmpty) {
+        final id = root['rootidstr'];
+        print("    <<<<<< detail commentId=$id");
+        final u = Uri.parse('http://api.weibo.cn/2/comments/build_comments?networktype=wifi&max_id=0&is_show_bulletin=2&uicode=10000408&moduleID=700&trim_user=0&is_reload=1&wb_version=3342&is_encoded=0&c=android&i=c7f35ce&s=af220cf7&id=$id&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&skin=default&count=20&oldwm=44904_0001&sflag=1&luicode=10000002&fetch_level=1&max_id_type=0');
+        final res = await http.post(u);
+        final detail = json.decode(res.body);
+        final list = detail['comments'] as List;
+        print("    >>>>>> old=${old.length}, new=${list.length}");
+        root['comments'] = list;
+        size = list.length ;
+      }
+      return size + 1;
+    }));
+    print(">>>>>> ${item['text']}: total=$total");
+    return total.isEmpty ? null : body;
+  } else {
+    print("!!!!!!! error: url=$url");
+  }
+}
+
+Future<int> _writeComment(int page) async {
+  int size = 0;
+  final sink = File('').openWrite();
+    final body = json.decode(await File('weibo_comment_$page.json').readAsString());
+    final roots = body['root_comments'] as List? ?? const [];
+    size = roots.length;
+    roots.forEach((root) {
+      final user = root['user'] as Map<String, dynamic>;
+      final name = user['screen_name'];
+      final time = HttpDate.parse((root['created_at'] as String?)?.replaceFirst('+0800', '') ?? '');
+      final text = root['text'];
+
+      final more = root['more_info'] as Map<String, dynamic>?;
+
+      final comments = root['comments'] as List? ?? const [];
+      comments.forEach((comment) {
+        final c = comment as Map<String, dynamic>;
+        _writeOneComment(sink, c);
+      });
+
+    });
+  return size;
+}
+
+void _writeOneComment(IOSink sink, Map<String, dynamic> comment) {
+  final user = comment['user'];
+  final colon = comment['shouldShowColon'] as int? ?? 0;
+  final name = user['screen_name'];
+  final time = HttpDate.parse((comment['created_at'] as String?)?.replaceFirst('+0800', '') ?? '');
+
+  sink.writeln(name);
+  sink.writeln(_formatTime2(time));
+  sink.writeln('${colon == 0 ? '' : ': '}${comment['text']}');
 }

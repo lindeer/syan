@@ -10,7 +10,6 @@ function formatFiles(files) {
       let json = JSON.parse(data);
       let result = JSON.stringify(json, null, 2);
       fs.writeFileSync(f, result);
-      console.log(result);
     } catch (err) {
       console.log("error: ",err);
     }
