@@ -205,26 +205,30 @@ Future<void> _fetchAllComments() async {
     int num = await _fetchPageComments(f.path);
     print("------ finish downloading comments${num > 0 ? ' and saved' : ''}");
   }
-
 }
 
+final _oldCommentDate = DateTime(2016, 8, 19);
 Future<int> _fetchPageComments(String path) async {
   final input = File(path);
   final body = json.decode(await input.readAsString());
   final cards = body['cards'] as List;
-  final comments = <Map<String, dynamic>>[];
-  for (final card in cards) {
+  final tasks = cards.map((card) async {
     final entity = card['mblog'];
     final count = entity['comments_count'] as int? ?? 0;
-    if (count > 0) {
-      final itemId = card['itemid'];
-      final id = entity['idstr'] as String;
-      final comment = (await _fetchComments({"itemId":itemId, "blogId":id, "text":entity['text']}));
-      if (comment != null) {
-        comments.add(comment);
-      }
-    }
-  }
+    final time = HttpDate.parse((entity['created_at'] as String?)?.replaceFirst('+0800', '') ?? '');
+    final usingOld = time.isBefore(_oldCommentDate);
+
+    return count > 0
+        ? await _fetchComments({
+      "itemId": card['itemid'],
+      "blogId": entity['idstr'],
+      "text": entity['text'],
+      'usingOld': '$usingOld',
+    }) : null;
+  });
+  final futures = await Future.wait<Map<String, dynamic>?>(tasks);
+  final comments = futures.whereType<Map<String, dynamic>>().toList(growable: false);
+
   if (comments.length > 0) {
     final output = File(path.replaceAll('weibo_page_', 'weibo_comment_'));
     await output.writeAsString(json.encode(comments));
@@ -235,16 +239,20 @@ Future<int> _fetchPageComments(String path) async {
 Future<Map<String, dynamic>?> _fetchComments(Map<String, String> item) async {
   final itemId = item['itemId'];
   final blogId = item['blogId'];
+  final usingOld = item['usingOld'] == "true";
   print("<<<<<< itemId=$itemId, blog=$blogId");
-  final url = Uri.parse('http://api.weibo.cn/2/comments/build_comments?networktype=wifi&max_id=0&is_show_bulletin=2&uicode=10000002&moduleID=700&trim_user=0&is_reload=1&wb_version=3342&is_encoded=0&lcardid=$itemId&c=android&i=c7f35ce&s=af220cf7&id=$blogId&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&lfid=2302831831493635&skin=default&count=20&oldwm=44904_0001&sflag=1&luicode=10000197&fetch_level=0&max_id_type=0');
+  final uri = usingOld
+      ? 'https://api.weibo.cn/2/comments/show?networktype=wifi&with_common_cmt_new=1&uicode=10000002&moduleID=700&wb_version=3342&lcardid=$itemId&c=android&i=c7f35ce&s=af220cf7&id=$blogId&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&lfid=2302831831493635&page=1&skin=default&count=20&oldwm=44904_0001&sflag=1&related_user=0&need_hot_comments=1&luicode=10000197&filter_by_author=0'
+      : 'http://api.weibo.cn/2/comments/build_comments?networktype=wifi&max_id=0&is_show_bulletin=2&uicode=10000002&moduleID=700&trim_user=0&is_reload=1&wb_version=3342&is_encoded=0&lcardid=$itemId&c=android&i=c7f35ce&s=af220cf7&id=$blogId&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&lfid=2302831831493635&skin=default&count=20&oldwm=44904_0001&sflag=1&luicode=10000197&fetch_level=0&max_id_type=0';
+  final url = Uri.parse(uri);
   final response = await http.post(url);
   final success = response.statusCode == 200;
   if (success) {
     final body = json.decode(response.body) as Map<String, dynamic>;
-    final roots = body['root_comments'] as List? ?? const [];
+    final roots = body['root_comments'] as List? ?? body['comments'] as List? ?? const [];
     final total = await Future.wait<int>(roots.map((root) async {
       final more = root['more_info'] as Map<String, dynamic>?;
-      final old = root['comments'] as List;
+      final old = root['comments'] as List? ?? const [];
       int size = old.length;
       if (more != null && more.isNotEmpty) {
         final id = root['rootidstr'];
@@ -253,13 +261,13 @@ Future<Map<String, dynamic>?> _fetchComments(Map<String, String> item) async {
         final res = await http.post(u);
         final detail = json.decode(res.body);
         final list = detail['comments'] as List;
-        print("    >>>>>> old=${old.length}, new=${list.length}");
+        print("    >>>>>> old=${old.length}, new=${list.length}, old=$usingOld");
         root['comments'] = list;
         size = list.length ;
       }
       return size + 1;
     }));
-    print(">>>>>> ${item['text']}: total=$total");
+    print(">>>>>> $itemId: total=$total, old=$usingOld");
     return total.isEmpty ? null : body;
   } else {
     print("!!!!!!! error: url=$url");
