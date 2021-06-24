@@ -311,7 +311,7 @@ void _writeAllComments() async {
         return;
       }
       final sink = file.openWrite(mode: FileMode.append);
-      final comments = container['root_comments'] as List? ?? const [];
+      final comments = container['root_comments'] as List? ?? container['comments'] as List? ?? const [];
       print("${file.path} have ${comments.length} comments!");
       comments.forEach((rootComment) {
         final replier = rootComment['user'] as Map<String, dynamic>;
