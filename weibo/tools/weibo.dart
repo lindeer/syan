@@ -294,14 +294,12 @@ Future<Map<String, dynamic>?> _fetchComments(int count, Map<String, String> item
   }
 }
 
-void _writeAllComments() async {
+void _writeAllComments() {
   final dir = Directory('data/weibo');
-  final files = dir.list(recursive: false, followLinks: false,).where((f) => f.path.contains('weibo_comment_'));
+  final files = dir.listSync(recursive: false, followLinks: false,).where((f) => f.path.contains('weibo_comment_'));
 
-
-  await for (final f in files) {
-    final blogs = json.decode(await File(f.path).readAsString()) as List? ?? const [];
-    print("all comments: ${blogs.length}");
+  for (final f in files) {
+    final blogs = json.decode(File(f.path).readAsStringSync()) as List? ?? const [];
     blogs.forEach((container) {
       final blog = container['status'] as Map<String, dynamic>;
       final time = HttpDate.parse((blog['created_at'] as String?)?.replaceFirst('+0800', '') ?? '');
