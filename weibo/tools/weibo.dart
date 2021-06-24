@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
@@ -199,11 +200,29 @@ void fetchWeibo({int page = 1, bool increase = true}) async {
 
 Future<void> _fetchAllComments() async {
   final dir = Directory('data/weibo');
-  final files = dir.list(recursive: false, followLinks: false,).where((f) => f.path.contains('weibo_page_'));
-  await for (final f in files) {
-    print("++++++ start downloading all comments in '${f.path}'...");
-    int num = await _fetchPageComments(f.path);
-    print("------ finish downloading comments${num > 0 ? ' and saved' : ''}");
+  final files = List.of(dir.listSync(recursive: false, followLinks: false,).where((f) => f.path.contains('weibo_page_')));
+  while (files.isNotEmpty) {
+    int n = 0;
+    while (n < files.length) {
+      final f = files[n];
+      print("++++++ start downloading all comments in '${f.path}'...");
+      int num = 0;
+      try {
+        num = await _fetchPageComments(f.path);
+      } catch (e) {
+        print("!!!! file=$f, error: $e");
+        break;
+      }
+      print("------ finish downloading comments${num > 0 ? ' and saved' : ''}");
+      await Future.delayed(const Duration(seconds: 3));
+      n++;
+    }
+    if (n < files.length) {
+      final failed = List.of(files.sublist(n));
+      files..clear()..addAll(failed);
+      print("######### ${files.length} failed!");
+      await Future.delayed(const Duration(minutes: 5));
+    }
   }
 }
 
@@ -219,7 +238,7 @@ Future<int> _fetchPageComments(String path) async {
     final usingOld = time.isBefore(_oldCommentDate);
 
     return count > 0
-        ? await _fetchComments({
+        ? await _fetchComments(count, {
       "itemId": card['itemid'],
       "blogId": entity['idstr'],
       "text": entity['text'],
@@ -236,13 +255,13 @@ Future<int> _fetchPageComments(String path) async {
   return comments.length;
 }
 
-Future<Map<String, dynamic>?> _fetchComments(Map<String, String> item) async {
+Future<Map<String, dynamic>?> _fetchComments(int count, Map<String, String> item) async {
   final itemId = item['itemId'];
   final blogId = item['blogId'];
   final usingOld = item['usingOld'] == "true";
   print("<<<<<< itemId=$itemId, blog=$blogId");
   final uri = usingOld
-      ? 'https://api.weibo.cn/2/comments/show?networktype=wifi&with_common_cmt_new=1&uicode=10000002&moduleID=700&wb_version=3342&lcardid=$itemId&c=android&i=c7f35ce&s=af220cf7&id=$blogId&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&lfid=2302831831493635&page=1&skin=default&count=20&oldwm=44904_0001&sflag=1&related_user=0&need_hot_comments=1&luicode=10000197&filter_by_author=0'
+      ? 'https://api.weibo.cn/2/comments/show?networktype=wifi&with_common_cmt_new=1&uicode=10000002&moduleID=700&wb_version=3342&lcardid=$itemId&c=android&i=c7f35ce&s=af220cf7&id=$blogId&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&lfid=2302831831493635&page=1&skin=default&count=${max(count, 20)}&oldwm=44904_0001&sflag=1&related_user=0&need_hot_comments=1&luicode=10000197&filter_by_author=0'
       : 'http://api.weibo.cn/2/comments/build_comments?networktype=wifi&max_id=0&is_show_bulletin=2&uicode=10000002&moduleID=700&trim_user=0&is_reload=1&wb_version=3342&is_encoded=0&lcardid=$itemId&c=android&i=c7f35ce&s=af220cf7&id=$blogId&ua=LGE-Nexus%205__weibo__7.3.0__android__android5.1.1&wm=44904_0001&aid=01A8V-NuwmveGeUbKVCeikNEsaeahxV5iJMRgD3fjwt_pz_Is.&v_f=2&v_p=45&from=1073095010&gsid=_2A25N1ertDeRxGedG6FMV-S3KyDmIHXVsw3klrDV6PUJbkdAKLW79kWpNUVL2fnRiMtjf3Bj5mUdwaVH-7vUflRy0&lang=zh_CN&lfid=2302831831493635&skin=default&count=20&oldwm=44904_0001&sflag=1&luicode=10000197&fetch_level=0&max_id_type=0';
   final url = Uri.parse(uri);
   final response = await http.post(url);
@@ -270,7 +289,7 @@ Future<Map<String, dynamic>?> _fetchComments(Map<String, String> item) async {
     print(">>>>>> $itemId: total=$total, old=$usingOld");
     return total.isEmpty ? null : body;
   } else {
-    print("!!!!!!! error: url=$url");
+    throw Exception('code: ${response.statusCode}');
   }
 }
 
