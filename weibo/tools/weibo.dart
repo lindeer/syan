@@ -150,7 +150,7 @@ Future<int> _writePost(Map<String, dynamic> body) async {
 
       } else if (type == 24) {
         sink.writeln('> <img src="${page['page_pic']}" />');
-        sink.writeln(">  ${page['user']?['screen_name']}回答了:");
+        page['user']?['screen_name']?.let((it) => sink.writeln(">  $it回答了:"));
         sink.writeln(">  ${page['content1']}");
         (page['content2_html'] as String?)?.let((it) => sink.writeln(">  $it"));
       }
