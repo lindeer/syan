@@ -172,6 +172,8 @@ void main(List<String> argv) {
   _feedList.forEach(_saveFeed);
 }
 
+final reg = RegExp(r'__INITIAL_STATE__=({.*})');
+
 void _saveFeed(String feedId) async {
   final url = Uri.parse('http://renren.com/feed/$feedId/42526317');
   final response = await http.get(url, headers: {"Cookie": 'taihe_bi_sdk_uid=449bda8e2dda262917ce859d17c16c60; taihe_bi_sdk_session=63a87ef63c5936d65b70dd52ac2e3683; Hm_lvt_ad6b0fd84f08dc70750c5ee6ba650172=1626404623; anonymid=kr5rgxfs-mqoo4w; LOCAL_STORAGE_KEY_RENREN_USER_BASIC_INFO=%7B%22userName%22%3A%22%u6797%u9E7F%22%2C%22userId%22%3A42526317%2C%22headUrl%22%3A%22http%3A//hdn.xnimg.cn/photos/hdn321/20120614/1645/h_head_XGmE_0c4e000002b81375.jpg%22%2C%22secretKey%22%3A%2295e5a633c5dc7173fabab0b7497dda1b%22%2C%22sessionKey%22%3A%22F2C6GPSsWiKBL5v%22%7D; Hm_lpvt_ad6b0fd84f08dc70750c5ee6ba650172=1626663781'});
@@ -181,7 +183,6 @@ void _saveFeed(String feedId) async {
     });
     return;
   }
-  final reg = RegExp(r'__INITIAL_STATE__=({.*})');
   final match = reg.firstMatch(response.body);
   final str = match?[1];
   if (str == null) {
@@ -191,9 +192,14 @@ void _saveFeed(String feedId) async {
   final body = json.decode(str);
   final detail = body['feedDetail']['detail'] as Map<String, dynamic>;
 
-  final filename = 'data/renren/renren_feed_$feedId.json';
+  final id = '${detail['id']}';
+  final filename = 'data/renren/renren_feed_$id.json';
   final file = File(filename);
-  await file.writeAsString(json.encode(detail));
+  file.writeAsStringSync(json.encode(detail), flush: true);
+  if (id != feedId) {
+    print("????????????? '$feedId' is not fetched id '$id' !!");
+  }
+  print("save feed $feedId!!");
 }
 
 extension _IntExt on int {
