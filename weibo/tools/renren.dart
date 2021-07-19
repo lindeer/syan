@@ -169,7 +169,8 @@ void main(List<String> argv) {
   if (argv.length > 0) {
     Directory.current = argv[0];
   }
-  _feedList.forEach(_saveFeed);
+  // _feedList.forEach(_saveFeed);
+  _createSource();
 }
 
 final reg = RegExp(r'__INITIAL_STATE__=({.*})');
@@ -211,15 +212,47 @@ String _formatTime(DateTime time, {String ymd = ' ', String hms = ':'}) {
       "${time.hour.padZero}$hms${time.minute.padZero}$hms${time.second.padZero}";
 }
 
-void _writeFeed(IOSink sink, Map<String, dynamic> feed) {
+void _createSource() async {
+  final dir = Directory('data/renren');
+  if (!dir.existsSync()) {
+    print("No renren data found in 'data/renren'!");
+    exit(-1);
+  }
+  final sourceDir = Directory('source/_posts');
+  if (!sourceDir.existsSync()) {
+    sourceDir.create(recursive: true);
+  }
+  final files = dir.listSync(recursive: false, followLinks: false,).where((f) => f.path.contains('renren_feed_'));
+  int count = 0;
+  for (final f in files) {
+    final feed = json.decode(File(f.path).readAsStringSync());
+    _writeFeed(feed);
+    count++;
+  }
+  print("finish writing $count post!");
+}
+
+void _writeFeed(Map<String, dynamic> feed) {
   final content = feed['body'];
   final text = content['content'];
   final time = DateTime.fromMillisecondsSinceEpoch(feed['publish_time'] as int);
+  final f = File("source/_posts/renren_${_formatTime(time, ymd: '-', hms: '')}.md");
+  final sink = f.openWrite();
   sink.writeln('layout: weibo');
   sink.writeln('date: ${_formatTime(time)}');
   sink.writeln('---');
   sink.writeln('<meta name="referrer" content="no-referrer" />\n');
-  sink.writeln(_formatTime(time));
-
+  sink.writeln('<img src="/images/favicon.ico" style="float: left;"/>${_formatTime(time)}\n');
   sink.writeln(text);
+  sink.writeln();
+
+  final images = content['images'] as List?;
+  images?.forEach((img) {
+    sink.writeln('![content](${img['url']})');
+  });
+  if ((images?.length ?? 0) > 1) {
+    print("!!!! ${feed['id']} more than one pic!");
+  }
+
+  sink.close();
 }
