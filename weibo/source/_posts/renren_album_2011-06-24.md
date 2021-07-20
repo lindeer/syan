@@ -3,7 +3,7 @@ date: 2011-06-24 01:05:00
 ---
 <meta name="referrer" content="no-referrer" />
 
-<img src="/images/favicon.ico" style="float: left;"/> 2011-06-24
+<img src="/images/renren.ico" style="float: left;"/> 2011-06-24
 
 新居初夜
 

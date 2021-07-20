@@ -3,7 +3,7 @@ date: 2011-07-09 00:25:00
 ---
 <meta name="referrer" content="no-referrer" />
 
-<img src="/images/favicon.ico" style="float: left;"/> 2011-07-09
+<img src="/images/renren.ico" style="float: left;"/> 2011-07-09
 
 Travelling Stroy5
 

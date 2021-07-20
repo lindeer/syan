@@ -242,7 +242,7 @@ void _writeFeed(Map<String, dynamic> feed) {
   sink.writeln('date: ${_formatTime(time)}');
   sink.writeln('---');
   sink.writeln('<meta name="referrer" content="no-referrer" />\n');
-  sink.writeln('<img src="/images/favicon.ico" style="float: left;"/>${_formatTime(time)}\n');
+  sink.writeln('<img src="/images/renren.ico" style="float: left;"/>${_formatTime(time)}\n');
   sink.writeln(text);
   sink.writeln();
 

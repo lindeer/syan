@@ -3,7 +3,7 @@ date: 2012-05-02 09:10:00
 ---
 <meta name="referrer" content="no-referrer" />
 
-<img src="/images/favicon.ico" style="float: left;"/> 2012-05-02
+<img src="/images/renren.ico" style="float: left;"/> 2012-05-02
 
 那临风眺望的感觉
 
