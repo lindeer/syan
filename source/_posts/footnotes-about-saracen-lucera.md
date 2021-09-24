@@ -79,7 +79,7 @@ category: Life
 
 从此处可以俯瞰福贾和费奥伦蒂诺[^24]，就好像是一部戏剧的开幕和谢幕一样。主人公好像在紧紧跟着宏大的恩赐前进一样，心中没有一丝沮丧、被雇佣的感觉。灾难一个接一个，像是经过数学计算般精确。直到最后，在愤怒和绝望中，他凄惨地死掉了。此时，我们的满足是完整的。
 
-不，并不十分完整。因为从某个角度说，这个大阴谋[^25]看起来并没有完美地实现。不幸的阿特丽克斯王子们[^26]在1266年婴儿时期即被囚禁，他们的存在似乎被历史学家们遗忘了。递送人罗格·劳里亚一直坚持让年轻的阿特丽克斯王子们复位，直到最终胜利。可是他为何没能从中受益呢[^27]？既然连敌人康拉丁的孩子都能妥善处置，为什么科斯坦扎不肯恩赐自己的亲生骨肉[^28]、王朝的最后几个子孙呢？什么在接下来的和平时期，至少在1302年没能释放他们呢？原因很简单，没人知道该怎么处置他们。政治原因抹杀了他们的存在。多么可怕的想法呀，一个阳光灿烂的世界居然连三个孩子都容不下！在阿普利亚要塞，他们一直被用铁链捆绑着。1295年的一份皇家文件赦免了他们的镣铐之苦。他们已经被铐了三十年！他们的命运不得而知，中世纪的黑暗再一次向他们靠近……
+不，并不十分完整。因为从某个角度说，这个大阴谋[^25]看起来并没有完美地实现。不幸的阿特丽克斯王子们[^26]在1266年婴儿时期即被囚禁，他们的存在似乎被历史学家们遗忘了。递送人罗格·劳里亚一直坚持让年轻的阿特丽克斯王子们复位，直到最终胜利。可是他为何没能从中受益呢[^27]？既然连敌人康拉丁的孩子都能妥善处置[^28]，为什么科斯坦扎不肯恩赐自己的亲生骨肉[^29]、王朝的最后几个子孙呢？什么在接下来的和平时期，至少在1302年没能释放他们呢？原因很简单，没人知道该怎么处置他们。政治原因抹杀了他们的存在。多么可怕的想法呀，一个阳光灿烂的世界居然连三个孩子都容不下！在阿普利亚要塞，他们一直被用铁链捆绑着。1295年的一份皇家文件赦免了他们的镣铐之苦。他们已经被铐了三十年！他们的命运不得而知，中世纪的黑暗再一次向他们靠近……
 
 我的沉思被城堡拐角处一个黑影的出现打断了。它悄悄地向这边靠近，偶尔停顿一下。难道我唤起了逝者的幻影？
 
@@ -98,6 +98,13 @@ category: Life
 > 卡洛于1266年在贝内文托战役败西西里国王曼弗雷迪，1268年在塔利亚科佐战役中击败与教皇关系敌对的士瓦本公爵康拉丁，灭亡霍亨斯陶芬王朝并征服了那不勒斯和西西里两地。此后他还将势力扩张到巴尔干地区并于1277年成为耶路撒冷王国的继承人。由于卡洛将他的首都从巴勒莫迁到那不勒斯并大量任用法国官员，从而导致了西西里人的不满，在1282年发生了西西里晚祷事件。西西里当地叛军与西班牙阿拉贡国王佩德罗三世结盟，于1284年6月在那不勒斯湾击败了卡洛的舰队。
 >
 > 1302年西西里晚祷战争结束，安茹与阿拉贡签署《卡尔塔贝洛塔和约》后停火。安茹法国占领半岛南部统治那不勒斯国王， 阿拉贡统治北部特里纳克里亚王国，仍称西西里王国。
+
+**西西里晚祷战争是13世纪的“[世界大战](https://www.bilibili.com/read/cv4735944)”，是随后欧洲历史上的[重要事件](https://en.wikipedia.org/wiki/John_of_Procida)。**
+
+---
+9.24
+
+原来曼弗雷德和科斯坦察之间的详尽的关系已经在但丁的《神曲》中提及过了，在练狱篇第三章注释(人民文学出版社名著名译插图本)，不过同样没有提及比阿特丽斯的事情。
 
 
 [^1]: wiki上译作卢切拉
@@ -128,9 +135,9 @@ category: Life
 
 [^14]: 即[安茹的查理](https://zh.wikipedia.org/wiki/%E6%9F%A5%E7%90%86%E4%B8%80%E4%B8%96_(%E5%AE%89%E8%8C%B9))(1227-1285)，[那不勒斯安茹王朝开国国王](https://baike.baidu.com/item/%E6%9F%A5%E7%90%86%E4%B8%80%E4%B8%96/3752276)，同时也称西西里国王卡洛一世，“他连孩子都不放过”。
 
-[^15]: 原文 `Costanza`，应为阿拉贡女王[科斯坦察二世](https://zh.wikipedia.org/wiki/%E7%A7%91%E6%96%AF%E5%9D%A6%E5%AF%9F%E4%BA%8C%E4%B8%96)(1249-1302)，父亲为曼弗雷迪，丈夫是[佩德罗三世](https://zh.wikipedia.org/wiki/%E4%BD%A9%E5%BE%B7%E7%BE%85%E4%B8%89%E4%B8%96_(%E4%BA%9E%E6%8B%89%E5%B2%A1))
+[^15]: 原文 `Costanza`，应为阿拉贡女王[科斯坦察二世](https://zh.wikipedia.org/wiki/%E7%A7%91%E6%96%AF%E5%9D%A6%E5%AF%9F%E4%BA%8C%E4%B8%96)(1249-1302)，父亲为曼弗雷迪，丈夫是[佩德罗三世](https://zh.wikipedia.org/wiki/%E4%BD%A9%E5%BE%B7%E7%BE%85%E4%B8%89%E4%B8%96_(%E4%BA%9E%E6%8B%89%E5%B2%A1))，她才是神曲中的人物。
 
-[^16]: 原文 `Frangipani, huge in villainy; the princess Beatrix, tottering from the dungeon where she had been confined for nearly twenty years`. 没有说此人是神曲中的人物。 通过搜索`Roger of Lauria  "beatrix"`, 终于在这篇[wiki](https://en.wikipedia.org/wiki/Manfred,_King_of_Sicily)中找到：
+[^16]: 原文 `Frangipani, huge in villainy; the princess Beatrix, tottering from the dungeon where she had been confined for nearly twenty years`. 通过搜索`Roger of Lauria  "beatrix"`, 终于在这篇[wiki](https://en.wikipedia.org/wiki/Manfred,_King_of_Sicily)中找到：
     > 曼弗雷迪结过2次婚，第1任妻子是萨沃伊的比阿特丽斯，他们的女儿就是科斯坦察二世。
     >
     > 曼弗雷迪的第2任妻子是海伦娜‧安洁莉娜‧杜卡纳,是**伊庇鲁斯专制国**的统治者**米海尔二世·科穆宁·杜卡斯**的女儿。米海尔被曼弗雷迪打败就通过嫁女儿与他结盟。海伦娜和曼弗雷迪有4个孩子：比阿特丽斯，亨利，安塞姆，弗雷德里克。1266年曼弗雷迪死后，海伦娜和她的所有孩子都被安茹的理查俘虏。1271年海伦娜在下诺切拉(Nocera)的监狱中去世。三个儿子被囚禁在蒙特堡(Castel del Monte)——当时最大的只有四岁。 一直到1299年，查理二世才将他们解开并搬到了蛋堡(Castel dell'Ovo)。与普通的贵族囚犯相比，他们的生活条件异常悲惨，被沉重的锁链束缚关在黑暗中，几乎没有足够的食物生存，结果造成“失明和半疯”。搬运的压力对安塞姆非常大，他很快就去世了（1301 年）。亨利又活了 18 年，于 1318 年 10 月 31 日54岁时去世，死时“半饿半疯，可能失明”。相比之下，比阿特丽斯在1284年的[那不勒斯湾海战](https://en.wikipedia.org/wiki/Battle_of_the_Gulf_of_Naples)后，按照阿拉贡指挥官劳里亚的罗杰的命令被释放。她后来嫁给了萨卢佐侯爵曼弗雷德四世。最年长的儿子弗雷德里克越狱逃往德国。在几个欧洲宫廷流转过后，1312年在埃及去世。
@@ -139,13 +146,13 @@ category: Life
 
 [^18]: 原文 `without whose resourcefulness and audacity it might have gone ill with Aragon`, 译文应该是`阿拉贡就会非常危险`
 
-[^19]: 原文 `Popes and Palæologus—brilliant colour effects`，应该是`Popes and Palaeologus`, 帕里奥洛加斯(Palaeologus)指拜占庭帝国帕里奥洛加斯王朝(1261-1453), 也作[巴列奥略](https://zh.wikipedia.org/wiki/%E5%B7%B4%E5%88%97%E5%A5%A5%E7%95%A5%E7%8E%8B%E6%9C%9D)。应该译作`西边的教皇和东边的皇帝泛着耀眼的光辉`。
+[^19]: 原文 `Popes and Palæologus—brilliant colour effects`，应该是`Popes and Palaeologus`, 帕里奥洛加斯(Palaeologus)指拜占庭帝国帕里奥洛加斯王朝(1261-1453), 也作[巴列奥略](https://zh.wikipedia.org/wiki/%E5%B7%B4%E5%88%97%E5%A5%A5%E7%95%A5%E7%8E%8B%E6%9C%9D)。这里应该指[米海尔八世](https://zh.wikipedia.org/wiki/%E7%B1%B3%E6%B5%B7%E5%B0%94%E5%85%AB%E4%B8%96)(?-1282),应该译作`西边的教皇和东边的皇帝泛着耀眼的光辉`。
 
 [^20]: 还有英格兰和法国圣·路易斯的国王：原文 `the king of England and Saint Louis of France`，应该是`法国的圣路易`，即卡佩王朝法兰西国王路易九世(1214-1270)，安茹的查理的哥哥。
 
 [^21]: 原文 `in the background, dimly discernible, the colossal shades of Frederick and Innocent, looked in deadly embrace.` ，`Innocent`都大写了还能翻译地成`无辜`? 应该是教皇[英诺森三世](https://baike.baidu.com/item/%E8%8B%B1%E8%AF%BA%E6%A3%AE%E4%B8%89%E4%B8%96/6675979)，也作[意诺增爵](https://zh.wikipedia.org/wiki/%E4%BE%9D%E8%AB%BE%E5%A2%9E%E7%88%B5%E4%B8%89%E4%B8%96)， 腓特烈二世是英诺森三世的教子，凭借英诺森三世的支持才当上的帝国皇帝，一直受教皇的控制。
 
-[^22]: 原文还有一句 `by some electric fluid—the personality of John of Procida`, [John of Procida](https://en.wikipedia.org/wiki/John_of_Procida)(1210–1298)普罗奇达的约翰。
+[^22]: 原文还有一句 `by some electric fluid—the personality of John of Procida`, [普罗奇达的约翰(John of Procida)](https://en.wikipedia.org/wiki/John_of_Procida)(1210–1298)是普罗奇达岛领主家族的约翰三世。普罗奇达的约翰在曼弗雷迪死后逃往阿拉贡，之后代表佩德罗三世前往君士坦丁堡寻求米海尔八世(Michael VIII Palaeologus)的支持(去推翻查理对西西里的统治)，米海尔表示需要教皇许可，于是又去罗马并得到了教皇尼古拉斯三世(Nicholas III)的同意(他是尼古拉斯三世枢机主教约翰奥尔西尼的私人医生)；但教皇很快死去，新上任的教皇却是查理的盟友。佩德罗三世去法国参加波尔多决斗时，让约翰负责西西里岛。约翰进行了一系列的秘密外交，致力反对法国人的统治。
 
 [^23]: 在佩德罗三世的[wiki](https://zh.wikipedia.org/wiki/%E4%BD%A9%E5%BE%B7%E7%BE%85%E4%B8%89%E4%B8%96_(%E4%BA%9E%E6%8B%89%E5%B2%A1))有如下描述：
     > 1282年，在西西里晚祷事件后，安茹的查理被推翻。佩德罗三世接受西西里人的邀请，前往西西里就任国王。但是法兰西籍教皇马丁四世只承认查理为西西里和那不勒斯的国王，查理也乘机向佩德罗三世提出在波尔多决斗的挑战，佩德罗三世准时到达了决斗地点，而查理却缺席不到，佩德罗三世自然赢得了胜利，教皇马丁四世将佩德罗三世开除教籍，并给亚拉冈停止圣事的处罚，废黜他的王位，解除臣民对他的效忠宣誓。
@@ -155,10 +162,12 @@ category: Life
 
 [^24]: 大阴谋与前文中的阴谋应该就是指西西里晚祷事件，该事件怀疑是阿拉贡王国国王佩德罗三世和拜占庭皇帝米海尔八世合谋。
 
-[^25]: 原文 `From this terrace one can overlook both Foggia and Castel Fiorentino—the beginning and end of the drama`, 应该是`从这里眺望福贾和卡斯泰尔菲奥伦蒂诺————这场大剧开始和结束的地方；` 1284年6月阿拉贡舰队在那不勒斯湾击败了卡洛(安茹的查理)的舰队，卡洛在准备反攻时于福贾病逝。
+[^25]: 原文 `From this terrace one can overlook both Foggia and Castel Fiorentino—the beginning and end of the drama`, 应该是`从这里眺望福贾和卡斯泰尔菲奥伦蒂诺————这场大剧开始和结束的地方；` 1284年6月阿拉贡舰队在那不勒斯湾击败了卡洛(安茹的查理)的舰队，卡洛在准备反攻时却于1285年1月7日在福贾病逝。
 
 [^26]: 原文 `the young brothers of Beatrix`. 应为`比阿特丽斯的弟弟们`
 
 [^27]: 原文: `Why did Roger de Lauria not profit by his victory to insist upon the restitution of the young brothers of Beatrix, of those unhappy princes who had been confined as infants in 1266, and whose very existence seems to have faded from the memory of historians?` 为什么罗杰海战胜利却没有坚持要归还比阿特丽斯的几个弟弟，而这些不幸的人存在似乎被历史学家们遗忘了。
 
-[^28]: 原文 `Or why did Costanza, who might have dealt with her enemy’s son even as Conradin had been dealt with, not round her magnanimity by claiming her own flesh and blood, the last scions of a great house?` 这些人是科斯坦察二世的同父异母弟妹，应该为`自己的血亲`。
+[^28]: 晚祷战争中安茹查理被打败并逐出西西里，后于1284年[反攻](https://stephaniehasekisultan.tumblr.com/post/111186925251/catalinadetrastamara-spanish-history)，科斯坦察二世在没有丈夫的支持下不仅赢得战争而且俘虏了安茹查理的儿子[查理二世(也称卡洛二世)](https://zh.wikipedia.org/wiki/%E5%8D%A1%E6%B4%9B%E4%BA%8C%E4%B8%96_(%E9%82%A3%E4%B8%8D%E5%8B%92%E6%96%AF))，科斯坦察因此成为共治女王。西西里人声称要查理二世为康拉丁偿命，但科斯坦察二世将他囚禁在切法卢的城堡以为保护，1288年，在缴纳赎金后最终被释放回国。
+
+[^29]: 原文 `Or why did Costanza, who might have dealt with her enemy’s son even as Conradin had been dealt with, not round her magnanimity by claiming her own flesh and blood, the last scions of a great house?` 这些人是科斯坦察二世的同父异母弟妹，应该为`自己的血亲`。
