@@ -103,4 +103,4 @@ deploy:
   type: git
   repository: git@github.com:lindeer/lindeer.github.io.git
   branch: master
-  message: footnotes about saracen-lucera
+  message: new travale writing list
