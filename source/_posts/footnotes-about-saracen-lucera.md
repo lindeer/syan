@@ -150,11 +150,11 @@ category: Life
 
 [^18]: 原文 `without whose resourcefulness and audacity it might have gone ill with Aragon`, 译文应该是`阿拉贡就会非常危险`
 
-[^19]: 原文 `Popes and Palæologus—brilliant colour effects`，应该是`Popes and Palaeologus`, 帕里奥洛加斯(Palaeologus)指拜占庭帝国帕里奥洛加斯王朝(1261-1453), 也作[巴列奥略](https://zh.wikipedia.org/wiki/%E5%B7%B4%E5%88%97%E5%A5%A5%E7%95%A5%E7%8E%8B%E6%9C%9D)。这里应该指[米海尔八世](https://zh.wikipedia.org/wiki/%E7%B1%B3%E6%B5%B7%E5%B0%94%E5%85%AB%E4%B8%96)(?-1282),应该译作`西边的教皇和东边的皇帝泛着耀眼的光辉`。
+[^19]: 原文 `Popes and Palæologus—brilliant colour effects`，应该是`Popes and Palaeologus`, 帕里奥洛加斯(Palaeologus或Palaiologos)指拜占庭帝国帕里奥洛加斯王朝(1261-1453), 也作[巴列奥略](https://zh.wikipedia.org/wiki/%E5%B7%B4%E5%88%97%E5%A5%A5%E7%95%A5%E7%8E%8B%E6%9C%9D)。这里应该指王朝第一代皇帝[米海尔八世(Michael VIII Palaeologus)](https://zh.wikipedia.org/wiki/%E7%B1%B3%E6%B5%B7%E5%B0%94%E5%85%AB%E4%B8%96)(?-1282),应该译作`西边的教皇和东边的皇帝泛着耀眼的光辉`。
 
 [^20]: 还有英格兰和法国圣·路易斯的国王：原文 `the king of England and Saint Louis of France`，应该是`法国的圣路易`，即卡佩王朝法兰西国王路易九世(1214-1270)，安茹的查理的哥哥。
 
-[^21]: 原文 `in the background, dimly discernible, the colossal shades of Frederick and Innocent, looked in deadly embrace.` ，`Innocent`都大写了还能翻译地成`无辜`? 应该是教皇[英诺森三世](https://baike.baidu.com/item/%E8%8B%B1%E8%AF%BA%E6%A3%AE%E4%B8%89%E4%B8%96/6675979)，也作[意诺增爵](https://zh.wikipedia.org/wiki/%E4%BE%9D%E8%AB%BE%E5%A2%9E%E7%88%B5%E4%B8%89%E4%B8%96)， 腓特烈二世是英诺森三世的教子，凭借英诺森三世的支持才当上的帝国皇帝，一直受教皇的控制。
+[^21]: 原文 `in the background, dimly discernible, the colossal shades of Frederick and Innocent, looked in deadly embrace.` ，`Innocent`都大写了还能翻译地成`无辜`? 应该是腓特烈二世与教皇[英诺森四世(Innocent IV)](https://baike.baidu.com/item/%E8%8B%B1%E8%AF%BA%E6%A3%AE%E5%9B%9B%E4%B8%96)(1195—1254)，也作[意诺增爵](https://zh.wikipedia.org/wiki/%E4%BE%9D%E8%AB%BE%E5%A2%9E%E7%88%B5%E5%9B%9B%E4%B8%96)， 1243年当选教皇，1245年将腓特烈二世逐出教会，延续了教权与皇权的斗争，而这种斗争是由教皇[英诺森三世](https://baike.baidu.com/item/%E8%8B%B1%E8%AF%BA%E6%A3%AE%E4%B8%89%E4%B8%96/6675979)发展起来的，腓特烈二世又是英诺森三世的教子，凭借英诺森三世的支持才当上的帝国皇帝。
 
 [^22]: 原文还有一句 `by some electric fluid—the personality of John of Procida`, [普罗奇达的约翰(John of Procida)](https://en.wikipedia.org/wiki/John_of_Procida)(1210–1298)是普罗奇达岛领主家族的约翰三世。普罗奇达的约翰在曼弗雷迪死后逃往阿拉贡，之后代表佩德罗三世前往君士坦丁堡寻求米海尔八世(Michael VIII Palaeologus)的支持(去推翻查理对西西里的统治)，米海尔表示需要教皇许可，于是又去罗马并得到了教皇尼古拉斯三世(Nicholas III)的同意(他是尼古拉斯三世枢机主教约翰奥尔西尼的私人医生)；但教皇很快死去，新上任的教皇却是查理的盟友。佩德罗三世去法国参加波尔多决斗时，让约翰负责西西里岛。约翰进行了一系列的秘密外交，致力反对法国人的统治。
 
