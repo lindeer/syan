@@ -90,9 +90,9 @@ category: Life
 
 ---
 
-康拉丁还是士瓦本公爵，在德意志的家族领地还在，他急于夺回被安茹查理占去的西西里及南意领地时，既没有得到帝国诸侯们的支持，又没有沟通教廷，还低估了敌人的实力，战败后又逃到了小人的地盘避难，终于铸就了[悲剧](https://m.weibo.cn/status/4646165393705331)。
+> 康拉丁还是士瓦本公爵，在德意志的家族领地还在，他急于夺回被安茹查理占去的西西里及南意领地时，既没有得到帝国诸侯们的支持，又没有沟通教廷，还低估了敌人的实力，战败后又逃到了小人的地盘避难，终于铸就了[悲剧](https://m.weibo.cn/status/4646165393705331)。
 
-康拉丁少年英武，可惜准备不足，没有煽动起西西里及南意地区本地贵族起来响应，加之缺乏教廷及其它国际势力的支持，活生生做了牺牲品，斯陶芬在历史舞台上悲壮地[谢幕](https://m.weibo.cn/status/3879054782535016)。
+> 康拉丁少年英武，可惜准备不足，没有煽动起西西里及南意地区本地贵族起来响应，加之缺乏教廷及其它国际势力的支持，活生生做了牺牲品，斯陶芬在历史舞台上悲壮地[谢幕](https://m.weibo.cn/status/3879054782535016)。
 
 如此一个悲情人物，网上还有他的一首[诗作](https://weibo.com/p/1001603962905602164724)流传。
 > ### 凤求凰
@@ -152,7 +152,7 @@ category: Life
 
 [^1]: wiki上译作卢切拉
 
-[^2]: 原文 `Suabian castle`, 即[斯瓦比亚城堡](https://zh.wikipedia.org/wiki/%E6%96%AF%E7%93%A6%E6%AF%94%E4%BA%9E%E5%9F%8E%E5%A0%A1)(意大利语Castello Svevo)，`Suabian`就是士瓦本(`Swabian`)的西班牙语
+[^2]: 原文 `Suabian castle`, 即[斯瓦比亚城堡](https://zh.wikipedia.org/wiki/%E6%96%AF%E7%93%A6%E6%AF%94%E4%BA%9E%E5%9F%8E%E5%A0%A1)(意大利语Castello Svevo)，`Suabian`就是英语士瓦本(`Swabian`)的西班牙语
 
 [^3]: 即[腓特烈一世](https://zh.wikipedia.org/wiki/%E8%85%93%E7%89%B9%E7%83%88%E4%B8%80%E4%B8%96_(%E7%A5%9E%E5%9C%A3%E7%BD%97%E9%A9%AC%E5%B8%9D%E5%9B%BD))(1122-1190)，也叫红胡子腓特烈，神圣罗马帝国皇帝，1155年加冕。文中的弗雷德里克都指的是腓特烈二世。
 
@@ -166,17 +166,17 @@ category: Life
 
 [^5]: 原文 `and sheltered Manfred in his hour of danger`
 
-[^5.1]: 可能是历史学家特罗亚诺·斯皮内利(Troiano Spinelli,1712-1777)及其1762年出版的著作《Saggio di tavola cronologica de' principi e più ragguardevoli ufficiali che anno signoreggiato, e retto le provincie, che ora compongono il regno di Napoli》。
+[^5.1]: 原文有作者注释：“这些资料已经被证实是历史学家Costanzo在16世纪为了某些他自己家族的原因假造的。Bernhardi教授于1869年怀疑其真实性后被Capasso证实。”应该不是历史学家特罗亚诺·斯皮内利(Troiano Spinelli,1712-1777)及其1762年出版的著作《Saggio di tavola cronologica de' principi e più ragguardevoli ufficiali che anno signoreggiato, e retto le provincie, che ora compongono il regno di Napoli》。
 
 [^5.2]: 原文 `Genius of Bourbonism`，这里的`Bourbonism`指的是[Neo-Bourbonism](https://en.wikipedia.org/wiki/Bourbonism)，似是一种两西西里王国时期的艺术风格。
 
 [^6]: 原文 `what the average Anglo-Saxon would ask himself`, 应该为盎格鲁-撒克逊人，被古罗马人视为蛮族。
 
-[^7]: 原文 `Troia`，特洛伊的意大利文
+[^7]: 原文 `Troia`，即意大利城市特罗亚，位于卢切拉南部。
 
-[^8]: 原文 `or San Severo famed in war`, 应该是战争中声名远播的[圣塞韦罗城](https://zh.wikipedia.org/wiki/%E8%81%96%E5%A1%9E%E9%9F%8B%E7%BE%85)。
+[^8]: 原文 `or San Severo famed in war`, 应该是战争中声名远播的[圣塞韦罗城](https://zh.wikipedia.org/wiki/%E8%81%96%E5%A1%9E%E9%9F%8B%E7%BE%85), 位于卢切拉北部。
 
-[^9]: 霍亨斯陶芬家族封地位于德意志，头衔为[士瓦本公爵](https://zh.wikipedia.org/wiki/%E5%A3%AB%E7%93%A6%E6%9C%AC%E5%85%AC%E7%88%B5)
+[^9]: 霍亨斯陶芬家族封地位于德意志，头衔为[士瓦本公爵](https://zh.wikipedia.org/wiki/%E5%A3%AB%E7%93%A6%E6%9C%AC%E5%85%AC%E7%88%B5)，其邦国[士瓦本公国](https://zh.wikipedia.org/wiki/%E5%A3%AB%E7%93%A6%E6%9C%AC%E5%85%AC%E5%9C%8B)也是当时德意志地区最强大的诸侯。
 
 [^10]: 原文 `how modern they were, he and his son the “Sultan of Lucera,” and their friends and counsellors, who planted this garden of exotic culture!` "Sultan of Lucera"[似乎](https://www.researchgate.net/publication/300940380_Emperor_Frederick_II_Sultan_of_Lucera_Friend_of_the_Muslims_promoter_of_cultural_transfer_controversies_and_suggestions)是对腓特烈二世的称呼，但腓特烈二世并不是腓特烈一世的儿子（这是什么垃圾翻译！）
 
