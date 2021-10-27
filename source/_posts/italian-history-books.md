@@ -13,6 +13,11 @@ category: Life
 
 直接在wiki上搜`Thomas Hodgkin`会定向到[病理学家托马斯霍奇金](https://en.wikipedia.org/wiki/Thomas_Hodgkin)，让我迷惑了好一阵，心想这个人竟然厉害到医学和历史学通吃。后来才发现霍奇金是一个大家族，出了非常多的名人。光有名声的托马斯霍奇金就有3个，第三个托马斯霍奇金竟然还是个[马克思理论家](https://en.wikipedia.org/wiki/Thomas_Lionel_Hodgkin)？！而他的[夫人](https://en.wikipedia.org/wiki/Dorothy_Hodgkin)竟然荣获了1964年的诺贝尔化学奖！他的同代人[艾伦霍奇金](https://en.wikipedia.org/wiki/Alan_Hodgkin)获得了1963年的诺贝尔生理学或医学奖, 真是科学世家！
 
+10.27 终于在格雷戈罗维乌斯的[德语wiki](https://de.wikipedia.org/wiki/Ferdinand_Gregorovius)上找到了他著作的在线版！
+整整十四卷本的超大著作[《Geschichte der Stadt Rom im Mittelalter》](https://www.projekt-gutenberg.org/gregorov/stadtrom/stadtrom.html), 还有他的其他[著作](https://www.projekt-gutenberg.org/autoren/namen/gregorov.html)，这真得感谢把这些卷帙浩繁的书籍全部电子的公司和个人，真是功德无量泽被后人，怎样赞颂他们的伟大也不为过！
+
+[Projekt Gutenberg-DE](https://www.projekt-gutenberg.org)上还有海量的德语作家的著作，余生慢慢翻译都够了！
+
 ---
 10.12 17:20
 
